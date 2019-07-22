@@ -16,7 +16,7 @@ The data that is aggregated here is also available for Grafana. Just follow thes
 1. add the MySQL-Database as source in Grafana
 2. add a new Dashboard
 3. add a new item with this custom SQL-Query:
-'''
+```
 SELECT
   time,
   min(CAST(value as decimal(10,2))),
@@ -25,4 +25,4 @@ FROM your_table_name
 WHERE $__timeFilter(time)
 GROUP BY time
 ORDER BY time
-'''
+```
