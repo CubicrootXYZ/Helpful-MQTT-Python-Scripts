@@ -9,9 +9,11 @@ This script mirrors your whole MQTT-Traffic into a MySQL-Database. I am using th
 4. Exectue the run.py with python 3
 
 **The Database Structure**
+
 This script adds a table for each MQTT-Channel. If there is a message pushed it will be saved to the corresponding table with time as a sql datetime object and value as the message stored as string.
 
 **How to set up Grafana with this data**
+
 The data that is aggregated here is also available for Grafana. Just follow these Instructions:
 1. add the MySQL-Database as source in Grafana
 2. add a new Dashboard
