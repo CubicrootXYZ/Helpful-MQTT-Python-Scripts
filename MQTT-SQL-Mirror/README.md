@@ -32,7 +32,9 @@ ORDER BY time
 ### Known Issues
 
 **Not able to fetch all messages**
+
 This script will pass some messages if they are send to quickly and are not send with QOS 1. To avoid this set all messages to QOS 1 and use sleeps when pushing many messages at the same time. 1 sec delay is enough.
 
 **Script does not execute, because the settings.ini file could not be read**
+
 Check if the executing user has permission to read the ini file. Otherwise check if you are executing the run.py from it's folder or change the working directory (see the How to Install section).
