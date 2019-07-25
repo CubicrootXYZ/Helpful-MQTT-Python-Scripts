@@ -51,13 +51,33 @@ if data['weather'][0]['id'] >= 200 and data['weather'][0]['id'] < 211:
     thunderstorm = 'thunderstorm'
 elif data['weather'][0]['id'] >= 211 and data['weather'][0]['id'] < 300:
     thunderstorm = 'h. thunderstorm'
+try:
+    weatherHourlyRain = data["rain"]["1h"]
+except:
+    weatherHourlyRain = 0
+try:
+    weatherHourlySnow = data["snow"]["1h"]
+except:
+    weatherHourlySnow = 0
 
-client.publish(mqttchannel+"Temperature", payload=temp, retain=True) # Temp in Celsius
-client.publish(mqttchannel+"Humidity", payload=hum, retain=True) # Humidity in Percent
-client.publish(mqttchannel+"Pressure", payload=pressure, retain=True) # Pressure
-client.publish(mqttchannel+"Rain", payload=rain, retain=True) # Rain as a String
-client.publish(mqttchannel+"Snow", payload=snow, retain=True) # Snow as a String
-client.publish(mqttchannel+"Thunderstorm", payload=thunderstorm, retain=True) # Thunderstorm as a String
-client.publish(mqttchannel+"Clouds", payload=clouds, retain=True) # Clouds in Percent
-client.publish(mqttchannel+"Windspeed", payload=windspeed, retain=True) # Windspeed
+
+client.publish(mqttchannel+"Temperature1", payload=temp, retain=True, qos=1)
+time.sleep(1)
+client.publish(mqttchannel+"Humidity1", payload=hum, retain=True, qos=1)
+time.sleep(1)
+client.publish(mqttchannel+"Pressure", payload=pressure, retain=True, qos=1)
+time.sleep(1)
+client.publish(mqttchannel+"Rain", payload=rain, retain=True, qos=1)
+time.sleep(1)
+client.publish(mqttchannel+"Snow", payload=snow, retain=True, qos=1)
+time.sleep(1)
+client.publish(mqttchannel+"Thunderstorm", payload=thunderstorm, retain=True, qos=1)
+time.sleep(1)
+client.publish(mqttchannel+"Clouds", payload=clouds, retain=True, qos=1)
+time.sleep(1)
+client.publish(mqttchannel+"Windspeed", payload=windspeed, retain=True, qos=1)
+time.sleep(1)
+client.publish(mqttchannel+"Rainamount", payload=weatherHourlyRain, retain=True, qos=1)
+time.sleep(1)
+client.publish(mqttchannel+"Snowamount", payload=weatherHourlyRain, retain=True, qos=1)
 
