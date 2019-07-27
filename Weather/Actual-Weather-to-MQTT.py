@@ -51,15 +51,15 @@ if data['weather'][0]['id'] >= 200 and data['weather'][0]['id'] < 211:
     thunderstorm = 'thunderstorm'
 elif data['weather'][0]['id'] >= 211 and data['weather'][0]['id'] < 300:
     thunderstorm = 'h. thunderstorm'
+
 try:
-    weatherHourlyRain = data["rain"]["1h"]
+    weatherHourlyRain = data["rain"]["3h"]/3
 except:
     weatherHourlyRain = 0
 try:
-    weatherHourlySnow = data["snow"]["1h"]
+    weatherHourlySnow = data["snow"]["3h"]/3
 except:
     weatherHourlySnow = 0
-
 
 client.publish(mqttchannel+"Temperature1", payload=temp, retain=True, qos=1)    # °C
 time.sleep(1)
@@ -79,5 +79,5 @@ client.publish(mqttchannel+"Windspeed", payload=windspeed, retain=True, qos=1) #
 time.sleep(1)
 client.publish(mqttchannel+"Rainamount", payload=weatherHourlyRain, retain=True, qos=1) # mm/h
 time.sleep(1)
-client.publish(mqttchannel+"Snowamount", payload=weatherHourlyRain, retain=True, qos=1) # mm/h
+client.publish(mqttchannel+"Snowamount", payload=weatherHourlySnow, retain=True, qos=1) # mm/h
 
