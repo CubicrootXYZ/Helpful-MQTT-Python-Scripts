@@ -4,6 +4,12 @@ This script rewrites MQTT messages. I am using this to rewrite the ENERGY messag
 
 You can add your own rules to this script.
 
+The given rules will do the following:
+
+For .../steckdose.../SENSOR => extract the JSON and push "Power", "Today", "Total", "Current", "Voltage" to ".../steckdose.../SENSOR/POWER", ".../steckdose.../SENSOR/TODAY" and so on. 
+
+For .../steckdose.../POWER it will convert ON/OFF to 1/0 and publish it in ".../steckdose.../POWER/POWERBINARY".
+
 **How to Install**
 1. Download the whole folder
 2. Add settings to the settings.ini, leave password and user for the MQTT-Server empty if not set
@@ -21,7 +27,9 @@ or
 if "your keyword" in str(msg.payload, 'utf-8')
 ```
 You can combine them with and, or ...
+
 3. Do whatever you whant with the payload
+
 4. Push your new messages into some other topics with
 ```
 self.mqttPublish(topic, message)
